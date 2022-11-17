@@ -10,4 +10,9 @@ public record Perk(Identifier skill, Identifier name, ArrayList<Restriction> unl
     public ArrayList<Unlockable> requirements() {
         return this.requirements;
     }
+
+    @Override
+    public Identifier identifier() {
+        return this.name;
+    }
 }
