@@ -1,7 +1,15 @@
 package com.iridevescence.metlas;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 
+import com.iridevescence.metlas.api.skill.MetlasRegistry;
+import com.iridevescence.metlas.api.skill.Restriction;
+import com.iridevescence.metlas.api.skill.tree.Unlockable;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +24,8 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
 
 public class Metlas implements ModInitializer, EntityComponentInitializer {
+    public static final HashMap<ItemStack, PlayerEntity> ITEMSTACK_PLAYER_MAPPINGS = new HashMap<>();
+
     public static final Logger LOGGER = LogManager.getLogger("Metlas");
 
     public static final ComponentKey<SkillTreeComponent> SKILL_TREE =
@@ -25,7 +35,10 @@ public class Metlas implements ModInitializer, EntityComponentInitializer {
 
     @Override
     public void onInitialize() {
+        Restriction.registerCallbacks();
 
+        MetlasRegistry.registerItemUseRestriction(new Identifier("metlas", "bow_test"), new Restriction.Item.Use(Items.BOW, new Unlockable(new Identifier("metlas", "test2"))));
+        MetlasRegistry.registerBlockRestriction(new Identifier("metlas", "iron_ore_test"), new Restriction.Block(Blocks.IRON_ORE, new Unlockable(new Identifier("metlas", "test"))));
     }
 
     @Override

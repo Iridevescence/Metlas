@@ -36,9 +36,7 @@ public class SkillTreeComponent implements PlayerComponent<SkillTreeComponent>, 
     @Override
     public void writeToNbt(NbtCompound tag) {
         NbtList list = new NbtList();
-        this.unlocks.forEach(unlock -> {
-            list.add(NbtString.of(unlock.identifier().toString()));
-        });
+        this.unlocks.forEach(unlock -> list.add(NbtString.of(unlock.identifier().toString())));
         tag.put("SkillTree", list);
     }
 

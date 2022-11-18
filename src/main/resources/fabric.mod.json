@@ -19,13 +19,20 @@
     "entrypoints": {
       "main": [
         "com.iridevescence.metlas.Metlas"
+      ],
+      "cardinal-components-entity": [
+        "com.iridevescence.metlas.Metlas"
       ]
     },
     "mixins": [
       "metlas.mixins.json"
     ],
-  
-    "depends": {
+  "custom": {
+    "cardinal-components": [
+      "metlas:skill_tree"
+    ]
+  },
+  "depends": {
       "fabricloader": ">=0.14.6",
       "fabric": "*",
       "minecraft": "~1.18.2",
